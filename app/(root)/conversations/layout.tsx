@@ -6,7 +6,7 @@ import { useQuery } from "convex/react";
 import DMConversationItem from "./_components/DMConversationItem";
 import { Loader2 } from "lucide-react";
 
-type Props = React.PropsWithChildren<{}>;
+type Props = React.PropsWithChildren<object>;
 
 const ConversationLayout = ({ children }: Props) => {
   const conversations = useQuery(api.conversations.get);

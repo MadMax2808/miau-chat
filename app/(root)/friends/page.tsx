@@ -9,9 +9,9 @@ import { api } from "@/convex/_generated/api";
 import { Loader2 } from "lucide-react";
 import Request from "./_components/Request";
 
-type Props = {};
+//type Props = {};
 
-const friends = (props: Props) => {
+const Friends  = () => {
   const requests = useQuery(api.requests.get);
 
   return (
@@ -44,4 +44,4 @@ const friends = (props: Props) => {
   );
 };
 
-export default friends;
+export default Friends ;

@@ -3,7 +3,7 @@ import DesktopNav from "./nav/DesktopNav";
 import MobileNav from "./nav/MobileNav";
 
 
-type Props = React.PropsWithChildren<{}>;
+type Props = React.PropsWithChildren<object>;
 
 const SidebarWrapper = ({ children }: Props) => {
   return (

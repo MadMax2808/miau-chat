@@ -18,12 +18,9 @@ type Props = {
 };
 
 const ConversationPage = ({ params }: Props) => {
-  const { conversationId } = use(params); // 👈 aquí se "desenvuelve" la promesa
+  const { conversationId } = use(params); 
   const conversation = useQuery(api.conversation.get, { id: conversationId });
   const [removeFriendDialogOpen, setRemoveFriendDialogOpen] = useState(false);
-  const [deleteGroupDialogOpen, setDeleteGroupDialogOpen] = useState(false);
-  const [leaveGroupDialogOpen, setLeaveGroupDialogOpen] = useState(false);
-  const [callType, setCallType] = useState<"audio" | "video" | null>(null);
 
   return conversation === undefined ? (
     <div className="w-full h-full flex items-center justify-center">
@@ -55,12 +52,12 @@ const ConversationPage = ({ params }: Props) => {
                 {
                   label: "Leave group",
                   destructive: false,
-                  onClick: () => setLeaveGroupDialogOpen(true),
+                  onClick: () => alert("open dialog"), // o aún mejor: implementar el diálogo después
                 },
                 {
                   label: "Delete group",
                   destructive: true,
-                  onClick: () => setDeleteGroupDialogOpen(true),
+                  onClick: () => alert("open dialog"), // o aún mejor: implementar el diálogo después
                 },
               ]
             : [

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { api } from "@/convex/_generated/api";
 import { useMutationState } from "@/hooks/useMutationState";
 import { SendHorizonal } from "lucide-react";
-import { FC, useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import { toast } from "sonner";
 import { Card } from "@/components/ui/card";
@@ -12,6 +12,8 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ConvexError } from "convex/values";
+import React from "react";
+
 import {
   Form,
   FormControl,
@@ -21,13 +23,13 @@ import {
 } from "@/components/ui/form";
 import { useConversation } from "@/hooks/useConversation";
 
-type Props = {};
+//type Props = {};
 
 const chatMessageSchema = z.object({
   content: z.string().min(1, { message: "This field can't be empty" }),
 });
 
-const ChatInput = (props: Props) => {
+const ChatInput = () => {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const { conversationId } = useConversation();
@@ -43,11 +45,10 @@ const ChatInput = (props: Props) => {
     },
   });
 
-  const handleInputChange = (event: any) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { value, selectionStart } = event.target;
     if (selectionStart !== null) {
       form.setValue("content", value);
-     
     }
   };
 
@@ -82,26 +83,27 @@ const ChatInput = (props: Props) => {
               control={form.control}
               name="content"
               render={({ field }) => {
-                return <FormItem className="h-full w-full">
-                  <FormControl>
-                    <TextareaAutosize
-                      onKeyDown={async (e) => {
-                        if (e.key === "Enter" && !e.shiftKey) {
-                          e.preventDefault();
-                          await form.handleSubmit(handleSubmit)();
-                        }
-                      }}
-                      rows={1}
-                      maxRows={3}
-                      {...field}
-                      onChange={handleInputChange}
-                      onClick={handleInputChange}
-                      placeholder="Type a message..."
-                      className="min-h-full w-full resize-none border-0 outline-0 bg-card text-card-foreground placeholder:text-muted-foreground p-1.5"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
+                return (
+                  <FormItem className="h-full w-full">
+                    <FormControl>
+                      <TextareaAutosize
+                        onKeyDown={async (e) => {
+                          if (e.key === "Enter" && !e.shiftKey) {
+                            e.preventDefault();
+                            await form.handleSubmit(handleSubmit)();
+                          }
+                        }}
+                        rows={1}
+                        maxRows={3}
+                        {...field}
+                        onChange={handleInputChange}
+                        placeholder="Type a message..."
+                        className="min-h-full w-full resize-none border-0 outline-0 bg-card text-card-foreground placeholder:text-muted-foreground p-1.5"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                );
               }}
             />
             <Button disabled={pending} size="icon" type="submit">

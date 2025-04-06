@@ -2,7 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 import React from "react";
 import { format } from "date-fns";
-import { Badge } from "@/components/ui/badge";
+//import { Badge } from "@/components/ui/badge";
 
 type Props = {
   fromCurrentUser: boolean;
