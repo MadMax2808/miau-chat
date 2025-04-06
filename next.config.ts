@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/",
-        destination: "/conversations",
+        destination: "https://bright-kudu-849.convex.cloud/conversations",
         permanent: true,
       },
     ];
